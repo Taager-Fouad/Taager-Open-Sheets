@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>فتح كل الجروبات - Open All Groups</title>
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,"Noto Sans",Tahoma,Arial;direction:rtl;padding:20px}
+    .box{max-width:820px;margin:0 auto;background:#fff;border-radius:8px;padding:18px;box-shadow:0 6px 22px rgba(0,0,0,0.08)}
+    h1{font-size:20px;margin:0 0 12px}
+    button{padding:10px 14px;border-radius:8px;border:0;background:#2563eb;color:white;cursor:pointer;margin:5px 0}
+    .group{margin-top:18px;padding:10px;background:#f9fafb;border-radius:6px}
+    .group h2{margin:0 0 8px;font-size:17px;color:#111}
+    .group a{display:block;padding:4px 0;color:#0366d6;text-decoration:none;word-break:break-all}
+    .group a:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>فتح كل الجروبات بضغطة واحدة</h1>
+    <button id="openAll">افتح كل الجروبات</button>
+    <div id="groups"></div>
+  </div>
+
+  <script>
+    const groups = {
+      "Taager": [
+        "https://starship.taager.com/",
+        "https://starship.taager.com/",
+        "https://starship.taager.com/",
+        "https://starship.taager.com/"
+      ],
+      "Sheets": [
+        "https://docs.google.com/spreadsheets/d/1khby0o7b7Wnrokv72kDXz-eHlX_ztpb6RH5VxJ4BxJA/edit?gid=0#gid=0",
+        "https://docs.google.com/spreadsheets/d/1TzCg16ZrDn_xMYVAM6Z30O4WrXYNwA1a9JYl1j7D5Jo/edit?gid=10481039#gid=10481039",
+        "https://docs.google.com/spreadsheets/d/1Y8FQwslCwSkodZqwwoPa5zmT1Icn15jZO3hJ-AphMF4/edit?gid=400656243#gid=400656243",
+        "https://docs.google.com/spreadsheets/d/1hKdD1mH-6_FM35YRqrxfeaLoqn2fmlyKjxJ-TsvwDyY/edit?pli=1&gid=1118150853#gid=1118150853",
+        "https://docs.google.com/spreadsheets/d/16JvfRl6AdX47DrxLFsTAkkbh6lsgwYafAFgVWxWRR3Q/edit?gid=0#gid=0",
+        "https://docs.google.com/spreadsheets/d/16RdIl__qEbsl6avBalZQee3kOgwDXgDViH1l-u9T44k/edit?pli=1&gid=0#gid=0",
+        "https://docs.google.com/spreadsheets/d/18pY8NBeCssLwMKKLM9O4DqZSJSZOP9gNtfhSu4IZtvM/edit?gid=0#gid=0",
+        "https://docs.google.com/spreadsheets/d/1VjlicCHV2sPnwyuuB4JeET4zSeXq0bK6Gl-1PA2VEeE/edit?gid=1135246785#gid=1135246785",
+        "https://script.google.com/macros/s/AKfycbxI3igLlwr6hLcaby8sGx3jpg1gxfRwad4Nf2OcWXDCKP4vUF6TgpaBKsme0HsIRmM9/exec",
+        "https://docs.google.com/spreadsheets/d/1ifWEUD61PYLNihtcyDFTzxehQxg6bIKtrQTJsEj2W04/edit?gid=1829068315#gid=1829068315",
+        "https://docs.google.com/presentation/d/1y-mZeUu4eujpUZ0qjsa6NDixkCz6c2eZaAUjN-c7ZIQ/edit?slide=id.g37f2c930785_0_107#slide=id.g37f2c930785_0_107",
+        "https://docs.google.com/spreadsheets/d/1Bxkjv3yTAY7RWi1mep7-bwwhmMMGew_m-F5c-ucV468/edit?gid=0#gid=0"
+      ],
+      "Postpone": [
+        "https://docs.google.com/forms/d/e/1FAIpQLSdmE8hKNJ38rnRPr-Wgu7JoIH42ObSSF9Xw9Ww8fOTWmvUlyA/viewform"
+      ],
+      "Social": [
+        "https://dukkank.com/",
+        "https://chatgpt.com/",
+        "https://mail.outhyre.co/",
+        "https://web.whatsapp.com/",
+        "https://www.google.com/",
+        "https://slack.com/get-started#/createnew"
+      ]
+    };
+
+    const container = document.getElementById('groups');
+    for (const [name, links] of Object.entries(groups)) {
+      const div = document.createElement('div');
+      div.className = 'group';
+      div.innerHTML = `<h2>${name}</h2>` + links.map(l=>`<a href="${l}" target="_blank" rel="noopener">${l}</a>`).join('');
+      const btn = document.createElement('button');
+      btn.textContent = `افتح جروب ${name}`;
+      btn.onclick = ()=>{
+        links.forEach(l=>window.open(l,'_blank'));
+      };
+      div.prepend(btn);
+      container.appendChild(div);
+    }
+
+    document.getElementById('openAll').addEventListener('click',()=>{
+      for(const links of Object.values(groups)){
+        links.forEach(l=>window.open(l,'_blank'));
+      }
+    });
+  </script>
+</body>
+</html>
